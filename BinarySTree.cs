@@ -25,7 +25,7 @@ namespace BinarySearchTree
 
         int LeftCount = 0;
         int RightCount = 0;
-        //bool result = false;
+        bool result = false;
 
         public void Insert(T item)//create method and pass parameter item
         {
@@ -66,6 +66,28 @@ namespace BinarySearchTree
                 RightCount++;
                 RightTree.Display();
             }
+        }
+        //search method to search a node in the binary search tree
+        public bool Search(T element, BinarySTree<T> node)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+            if (node.NodeData.Equals(element))
+            {
+                result = true;
+            }
+
+            else if (node.NodeData.CompareTo(element) < 0)
+            {
+                Search(element, node.RightTree);
+            }
+            else
+            {
+                Search(element, node.LeftTree);
+            }
+            return result;
         }
     }
 }
