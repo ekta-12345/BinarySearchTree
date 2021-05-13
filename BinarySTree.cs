@@ -6,55 +6,66 @@ using System.Threading.Tasks;
 
 namespace BinarySearchTree
 {
-    class BinarySTree<T> where T: IComparable<T>
+    //Generic Binary search tree is defined
+    public class BinarySTree<T> where T : IComparable<T>// Icomparable method is defined to use CompareTo inside the program
     {
         public T NodeData { get; set; }
         public BinarySTree<T> LeftTree { get; set; }
         public BinarySTree<T> RightTree { get; set; }
+
+        
+        /// constructor and pass parameter
+       
         public BinarySTree(T nodeData)
         {
-            this.NodeData = nodeData;
-            this.LeftTree = null;
-            this.RightTree = null;
+            NodeData = nodeData;
+            LeftTree = null;
+            RightTree = null;
         }
-        int leftCount = 0, rightCount = 0;
-        bool res = false;
-        public void Insert(T val)
-        {
-            T currentNodeValue = this.NodeData;
-            if((currentNodeValue.CompareTo(val)>0))
-            {
-                if (this.LeftTree == null)
-                    this.LeftTree = new BinarySTree<T>(val);
-                else
-                    this.LeftTree.Insert(val);
 
+        int LeftCount = 0;
+        int RightCount = 0;
+        //bool result = false;
+
+        public void Insert(T item)//create method and pass parameter item
+        {
+            T currentNodeValue = NodeData;
+            if ((currentNodeValue.CompareTo(item)) > 0)
+            {
+                if (LeftTree == null)
+                    LeftTree = new BinarySTree<T>(item);
+                else
+                    LeftTree.Insert(item);
             }
             else
             {
-                if (this.RightTree == null)
-                    this.RightTree = new BinarySTree<T>(val);
+                if (RightTree == null)
+                    RightTree = new BinarySTree<T>(item);
                 else
-                    this.RightTree.Insert(val);
-
+                    RightTree.Insert(item);
             }
         }
-            
+
+       
+        /// Get size of Binary Search Tree
+        
+        public void GetSize()
+        {
+            Console.WriteLine("\nSize " + (1 + LeftCount + RightCount));
+        }
         public void Display()
         {
-            if (this.LeftTree!=null)
+            if (LeftTree != null)
             {
-                this.leftCount++;
-                this.LeftTree.Display();
+                LeftCount++;
+                LeftTree.Display();
             }
-            Console.WriteLine(this.NodeData.ToString());
-            if(this.RightTree!=null)
+            Console.Write(NodeData.ToString() + "-->");
+            if (RightTree != null)
             {
-                this.rightCount++;
-                this.RightTree.Display();
-
+                RightCount++;
+                RightTree.Display();
             }
         }
-                   
     }
 }
