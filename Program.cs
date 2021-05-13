@@ -27,6 +27,9 @@ namespace BinarySearchTree
 
             binarySearch.GetSize();
             binarySearch.Display();
+            bool result = binarySearch.Search(63, binarySearch);
+            Console.WriteLine();
+            Console.WriteLine("The element 63 exists in the BST: " + binarySearch.Search(63, binarySearch));
             Console.Read();
 
         }
